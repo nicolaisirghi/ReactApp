@@ -6,6 +6,7 @@ import Post from "./components/Profile/MyPosts/Post/Post";
 import MyPost from "./components/Profile/MyPosts/MyPost";
 import Dialogs from "./components/Dialogs/Dialogs";
 import { Route, Routes} from "react-router-dom";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 const App = (props) => {
@@ -17,15 +18,17 @@ const App = (props) => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path='/dialogs' element={<Dialogs store={props.store} state = {props.state.dialogsPage}/>}/>
-                        <Route path='/profile' element={<Profile profilePage = {props.state.profilePage}
-                                                                 dispatch={props.dispatch}  />}/>
+                        <Route path='/dialogs' element={
+                            <DialogsContainer></DialogsContainer>
+                            // <DialogsContainer store={props.store}  />
+                        }/>
+                        <Route path='/profile' element={<Profile></Profile>}/>
+                        {/*// <Profile store = {props.store} dispatch ={props.dispatch} />}/>*/}
+
                     </Routes>
                 </div>
 
             </div>
-
-
     )
 }
 

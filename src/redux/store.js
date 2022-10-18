@@ -6,7 +6,6 @@ const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY';
 const SEND_MESSAGE = 'SEND_MESSAGE';
 let store = {
     _state: {
-        id:7,
         profilePage:
             {
                 posts: [
