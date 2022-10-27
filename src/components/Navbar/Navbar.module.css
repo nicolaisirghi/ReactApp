@@ -9,5 +9,9 @@
 }
 
 .item a.activeLink{
-    color: indigo;
+    color: red;
+}
+ .item a:hover{
+    color: violet;
+     font-size: 18px;
 }
