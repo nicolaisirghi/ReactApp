@@ -1,13 +1,9 @@
-import c from "./Dialogs.module.css";
-import {Navigate, NavLink} from "react-router-dom";
-import Message from "./Message/Message";
-import DialogItem from "./DialogItem/DialogItem";
-import store, {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/store";
+import store, {sendMessageCreator} from "../../redux/store";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import React from "react";
-import {withAuthRedirect} from "../../HOC/withAuthRedirect";
 import {compose} from "redux";
+import {withAuthRedirect} from "../../HOC/withAuthRedirect";
 
 
 let mapStateToProps = (state) => {
@@ -17,16 +13,13 @@ let mapStateToProps = (state) => {
 }
 let mapDispatchToProps = (dispatch) => {
     return {
-        updateNewMessageBodyCreator: (body) => {
-            dispatch(updateNewMessageBodyCreator(body));
-        },
-        sendMessage: () => {
-            dispatch(sendMessageCreator());
+        sendMessage: (newMessageBody) => {
+            dispatch(sendMessageCreator(newMessageBody));
         }
 
 
     }
 
 }
-export default compose(connect(mapStateToProps, mapDispatchToProps),
-    withAuthRedirect)(Dialogs);
+export default compose(connect(mapStateToProps, mapDispatchToProps),withAuthRedirect)
+(Dialogs);

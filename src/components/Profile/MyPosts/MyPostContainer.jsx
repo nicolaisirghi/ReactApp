@@ -17,9 +17,9 @@ return {
         dispatch(updateNewPostTextCreator(text))
 
     },
-    addPost:()=>
+    addPost:(newPost)=>
     {
-        dispatch(addPostActionCreator());
+        dispatch(addPostActionCreator(newPost));
 
     }
 }
