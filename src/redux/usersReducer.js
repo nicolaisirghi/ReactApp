@@ -91,11 +91,11 @@ export const toggleIsFetching = (isFetching) => {
 export const toggleFollowingInProgress = (followingInProgress,userID) => {
     return {type: TOGGLE_IS_FOLLOWING, followingInProgress,userID}
 }
-export const getUsers = (currentPage,pageSize)=>{
+export const requestUsers = (page,pageSize)=>{
     return (dispatch) =>
     {
         dispatch(toggleIsFetching(true));
-        usersAPI.getUsers(currentPage,pageSize)
+        usersAPI.getUsers(page,pageSize)
         .then(
             response => {
                 dispatch(toggleIsFetching(false));
