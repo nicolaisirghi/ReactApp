@@ -8,7 +8,6 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginPage from "./components/Login/Login";
 import {Component} from "react";
 import {connect} from "react-redux";
-import {getAuthUserData, logout} from "./redux/authReducer";
 import {compose} from "redux";
 import {initializeApp} from "./redux/appReducer";
 import Preloader from "./components/common/Preloader/Preloader";
