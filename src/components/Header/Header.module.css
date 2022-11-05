@@ -13,3 +13,16 @@
 .loginBlock a{
     color: white;
 }
+.btn{
+    height: 35px;
+    background-color: black;
+    border: none;
+    font-weight: bold;
+    /*width:60px;*/
+    color: white;
+    cursor: pointer;
+}
+.btn:hover{
+    background-color: white;
+    color: black;
+}

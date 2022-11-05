@@ -1,0 +1,34 @@
+
+.block{
+    display: flex;
+    justify-content: right;
+}
+.numberPage{
+    font-size: 25px;
+    border: 1px solid black;
+    margin: 0px 3px 0px ;
+    background-color: white;
+
+}
+.numberPage:hover{
+    cursor: pointer;
+    background-color: gold;
+}
+.selectedPage{
+    font-weight: bold;
+    background-color: black;
+    color: white;
+}
+.btn{
+    height: 35px;
+    background-color: white;
+    border: none;
+    letter-spacing: 4px;
+    font-weight: bold;
+    /*width:60px;*/
+    cursor: pointer;
+}
+.btn:hover{
+    background-color: black;
+    color: white;
+}

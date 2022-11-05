@@ -3,29 +3,12 @@ import styles from "./users.module.css";
 import userPhoto from "../../Assets/Images/pngegg.png";
 import Preloader from "../common/Preloader/Preloader";
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../API/api";
-
-let Users = (props) => {
-    //debugger;
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        if (i > 20) break;
-        pages.push(i);
-    }
+import Paginator from "../common/Paginator/Paginator";
+let Users = ({currentPage ,onPageChanged,totalUsersCount,pageSize,...props}) => {
     return <div className={styles.cont}>
-
-        <div>
-            {pages.map(p => {
-                return <span className={styles.numberPage}><span className={props.currentPage === p && styles.selectedPage}  onClick={(e) => {
-                    props.onPageChanged(p)
-                }}>{p + " "}</span></span>
-            })}
-        </div>
+       <Paginator currentPage={currentPage} onPageChanged ={onPageChanged} totalItemsCount={totalUsersCount} pageSize = {pageSize}/>
         {props.isFetching ? <Preloader/> : null}
         {
-
-
             props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
@@ -37,7 +20,6 @@ let Users = (props) => {
                         <div className={styles.info}>Country: {"u.location.country"}</div>
                             <div className={styles.info}>City: {"u.location.city"}</div>
                         {
-
                             u.followed
                                 ? <div className={styles.btn}>
                                     <button disabled={props.followingInProgress.some(id=>id===u.id)} onClick={()=>{
