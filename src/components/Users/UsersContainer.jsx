@@ -17,6 +17,7 @@ import {
     getPageSize,
     getTotalUsersCount, getUsers, getUsersSuper
 } from "../../redux/usersSelectors";
+import {profileAPI} from "../../API/api";
 
 let mapStateToProps = (state) => {
     return {
@@ -39,20 +40,24 @@ class UsersContainer extends React.Component {
         this.props.requestUsers(pageNumber, this.props.pageSize)
     }
 
+
     render() {
 
-        return <Users totalUsersCount={this.props.totalUsersCount}
-                      pageSize={this.props.pageSize}
-                      currentPage={this.props.currentPage}
-                      onPageChanged={this.onPageChanged}
-                      users={this.props.users}
-                      isFetching={this.props.isFetching}
-                      followingInProgress={this.props.followingInProgress}
-                      follow={this.props.follow}
-                      unFollow ={this.props.unFollow}
+        return <div>
+            <Users totalUsersCount={this.props.totalUsersCount}
+                   pageSize={this.props.pageSize}
+                   currentPage={this.props.currentPage}
+                   onPageChanged={this.onPageChanged}
+                   users={this.props.users}
+                   isFetching={this.props.isFetching}
+                   followingInProgress={this.props.followingInProgress}
+                   follow={this.props.follow}
+                   unFollow ={this.props.unFollow}
 
-        />
+            />
 
+
+        </div>
     }
 
 }
