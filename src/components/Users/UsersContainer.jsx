@@ -1,7 +1,9 @@
 import React from 'react';
 import {connect} from "react-redux";
+import s from "./users.module.css"
 import {
-    follow , requestUsers,
+    follow, getUser,
+    requestUsers,
     setCurrentPage,
     setTotalUsersCount,
     setUsers,
@@ -15,13 +17,13 @@ import {
     getFollowingInProgress,
     getIsFetching,
     getPageSize,
-    getTotalUsersCount, getUsers, getUsersSuper
+    getTotalUsersCount,
+    getUsers
 } from "../../redux/usersSelectors";
-import {profileAPI} from "../../API/api";
 
 let mapStateToProps = (state) => {
     return {
-        users:getUsers(state),
+        users: getUsers(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
@@ -31,6 +33,10 @@ let mapStateToProps = (state) => {
 }
 
 class UsersContainer extends React.Component {
+    state = {
+        search: ""
+    }
+
     componentDidMount() {
         this.props.requestUsers(this.props.currentPage, this.props.pageSize);
     }
@@ -40,10 +46,29 @@ class UsersContainer extends React.Component {
         this.props.requestUsers(pageNumber, this.props.pageSize)
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.search !== this.props.search)
+            this.setState({
+                search: this.props.search
+            })
+    }
+
+    onTextChange = (e) => {
+        this.setState({
+            search: e.currentTarget.value
+        })
+
+        this.props.getUser(this.state.search)
+
+    }
 
     render() {
 
         return <div>
+            <input type={"text"} placeholder={"Search user..."} value={this.state.search} onChange={this.onTextChange}
+
+            />
+
             <Users totalUsersCount={this.props.totalUsersCount}
                    pageSize={this.props.pageSize}
                    currentPage={this.props.currentPage}
@@ -52,7 +77,7 @@ class UsersContainer extends React.Component {
                    isFetching={this.props.isFetching}
                    followingInProgress={this.props.followingInProgress}
                    follow={this.props.follow}
-                   unFollow ={this.props.unFollow}
+                   unFollow={this.props.unFollow}
 
             />
 
@@ -64,7 +89,9 @@ class UsersContainer extends React.Component {
 
 
 export default compose(
-   // withAuthRedirect,
-    connect(mapStateToProps, {follow, unFollow,setUsers,
-        setCurrentPage, setTotalUsersCount, requestUsers,toggleFollowingInProgress}))
-    (UsersContainer);
+    // withAuthRedirect,
+    connect(mapStateToProps, {
+        follow, unFollow, setUsers,
+        setCurrentPage, setTotalUsersCount, requestUsers, toggleFollowingInProgress, getUser
+    }))
+(UsersContainer);

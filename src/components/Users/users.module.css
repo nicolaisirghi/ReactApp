@@ -1,42 +1,55 @@
-.userPhoto{
-   width: 100px;
+.userPhoto {
+    width: 100px;
     height: 100px;
     position: relative;
     top: 70px;
 }
 
-.btn{
+.btn {
     position: relative;
     left: 110px;
 }
 
-.cont{
+.cont {
     margin: 10px;
 }
-.name{
+
+.name {
     margin: 10px;
     font-size: 16px;
     font-weight: bold;
 }
-.info{
-    margin: 0px 110px 0px ;
+
+.info {
+    margin: 0px 110px 0px;
     font-size: 16px;
     font-weight: bold;
     position: relative;
 }
-.selectedPage{
+
+.selectedPage {
     font-weight: bold;
     color: white;
 
 }
-.numberPage{
+
+.numberPage {
     font-size: 18px;
     border: 1px solid black;
-    margin: 0px 5px 0px ;
+    margin: 0px 5px 0px;
     padding: 3px;
 }
-.numberPage :hover{
+
+.numberPage :hover {
     font-size: 20px;
     color: white;
     cursor: pointer;
+}
+
+input[type=text] {
+
+    border: 2px solid black;
+    margin-top: 10px;
+    margin-left: 10px;
+    height: 25px;
 }

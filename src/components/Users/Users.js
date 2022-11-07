@@ -17,8 +17,6 @@ let Users = ({currentPage ,onPageChanged,totalUsersCount,pageSize,...props}) => 
                         </NavLink>
                         <span className={styles.name}>Name: {u.name}</span>
                         <div className={styles.info}>Status: {u.status}</div>
-                        <div className={styles.info}>Country: {"u.location.country"}</div>
-                            <div className={styles.info}>City: {"u.location.city"}</div>
                         {
                             u.followed
                                 ? <div className={styles.btn}>

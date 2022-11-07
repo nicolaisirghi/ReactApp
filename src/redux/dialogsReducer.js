@@ -14,7 +14,7 @@ let initialState = {
         {id: 2, name: 'MihaKun'},
         {id: 3, name: 'Iulik'},
         {id: 4, name: 'Vitea Ak'},
-        {id: 5, name: 'Pizdabol Teesanu'},
+        {id: 5, name: 'Teesanu'},
         {id: 6, name: 'Nicu'}],
 };
 const dialogsReducer = (state = initialState, action) => {

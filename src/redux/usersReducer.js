@@ -92,6 +92,15 @@ export const requestUsers = (page, pageSize) => {
         dispatch(setTotalUsersCount(response.totalCount));
     }
 }
+export const getUser = (name) => {
+    return async (dispatch) => {
+        dispatch(toggleIsFetching(true));
+        const response = await usersAPI.getProfileByName(name)
+        dispatch(toggleIsFetching(false));
+        dispatch(setUsers(response.items));
+        dispatch(setTotalUsersCount(response.totalCount));
+    }
+}
 
 const followUnfollowFlow = async (dispatch, userID, apiMethod, actionCreator) => {
     dispatch(toggleFollowingInProgress(true, userID))

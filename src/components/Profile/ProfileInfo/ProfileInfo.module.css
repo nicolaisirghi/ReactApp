@@ -33,3 +33,7 @@ input::file-selector-button:hover {
     color: white;
     cursor: pointer;
 }
+
+.contact{
+    padding-left: 20px;
+}
