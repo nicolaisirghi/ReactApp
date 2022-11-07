@@ -4,3 +4,32 @@
 .desciption{
     font-weight: bold;
 }
+
+.displ{
+    width: 300px;
+}
+.displ > input{
+    display: none;
+}
+.displ:hover >input
+{
+    display: block;
+}
+input[type = file]{
+    color: transparent;
+}
+input::file-selector-button {
+    position: relative;
+    float: right;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 0.7em;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: gold;
+}
+input::file-selector-button:hover {
+    background-color: darkblue;
+    color: white;
+    cursor: pointer;
+}

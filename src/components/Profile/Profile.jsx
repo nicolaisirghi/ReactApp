@@ -2,10 +2,12 @@ import c from "./Profile.module.css"
 import MyPost from "./MyPosts/MyPost";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostContainer from "./MyPosts/MyPostContainer";
-const Profile = (props) =>{
-    return(
+
+const Profile = (props) => {
+    return (
         <div>
-        <ProfileInfo profile = {props.profile} status = {props.status} updateStatus = {props.updateStatus}/>
+            <ProfileInfo savePhoto={props.savePhoto} isOwner={props.isOwner} profile={props.profile}
+                         status={props.status} updateStatus={props.updateStatus}/>
             <MyPostContainer/>
         </div>)
 }

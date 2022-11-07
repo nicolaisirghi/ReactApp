@@ -5,6 +5,7 @@ const instance = axios.create(
         withCredentials: true,
         baseURL: "https://social-network.samuraijs.com/api/1.0/",
         headers: {"API-KEY": "06627c1b-f1df-4e21-a87d-e832678c110e"}
+
     }
 );
 
@@ -38,6 +39,19 @@ export const profileAPI = {
             status
         })
     },
+    savePhoto(photo){
+        const formData = new FormData();
+        formData.append("image",photo);
+
+        return instance.put(`profile/photo`,formData,
+            {
+                headers:
+                    {
+                        'Content-Type':'multipart/form-data'
+                    }
+            }
+            );
+    }
 
 }
 
