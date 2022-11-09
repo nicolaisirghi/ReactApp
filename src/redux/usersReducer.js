@@ -1,5 +1,5 @@
 import {usersAPI} from "../API/api";
-import {updateObjectInArray} from "../utils/objectHelper";
+import {followUnfollowFlow, updateObjectInArray} from "../utils/objectHelper";
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -8,13 +8,15 @@ const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_USERS_COUNT = 'SET_USERS_COUNT'
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 const TOGGLE_IS_FOLLOWING = 'TOGGLE_IS_FOLLOWING'
+const SET_SEARCH = 'SET_SEARCH'
 let initialState = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
-    followingInProgress: []
+    followingInProgress: [],
+    search:""
 }
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -22,13 +24,14 @@ const usersReducer = (state = initialState, action) => {
             debugger;
             return {
                 ...state,
-                users: updateObjectInArray(state.users,action.userID,"id",{followed:true})
+                users: updateObjectInArray(state.users,action.userID,"id",{followed:true}),
 
             }
         case UNFOLLOW:
             return {
                 ...state,
-                users: updateObjectInArray(state.users,action.userID,"id",{followed:false})
+                users: updateObjectInArray(state.users,action.userID,"id",{followed:false}),
+               // : updateObjectInArray(state.users,action.userID,"id",{followed:false})
 
             }
         case SET_USERS:
@@ -52,6 +55,12 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 followingInProgress: action.followingInProgress ? [...state.followingInProgress, action.userID] :
                     state.followingInProgress.filter(id => id != action.userID)
+            }
+        }
+        case SET_SEARCH:{
+            return {
+                ...state,
+                search: action.search
             }
         }
         default:
@@ -92,6 +101,11 @@ export const requestUsers = (page, pageSize) => {
         dispatch(setTotalUsersCount(response.totalCount));
     }
 }
+
+export const setSearch=(search)=>
+{
+    return {type:SET_SEARCH,search}
+}
 export const getUser = (name) => {
     return async (dispatch) => {
         dispatch(toggleIsFetching(true));
@@ -102,13 +116,6 @@ export const getUser = (name) => {
     }
 }
 
-const followUnfollowFlow = async (dispatch, userID, apiMethod, actionCreator) => {
-    dispatch(toggleFollowingInProgress(true, userID))
-    const response = await apiMethod(userID)
-    if (response.resultCode == 0)
-        dispatch(actionCreator(userID));
-    dispatch(toggleFollowingInProgress(false, userID));
-}
 
 export const follow = (userID) => {
     return async (dispatch) => {

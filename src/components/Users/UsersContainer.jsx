@@ -1,10 +1,11 @@
 import React from 'react';
 import {connect} from "react-redux";
-import s from "./users.module.css"
 import {
-    follow, getUser,
+    follow,
+    getUser,
     requestUsers,
     setCurrentPage,
+    setSearch,
     setTotalUsersCount,
     setUsers,
     toggleFollowingInProgress,
@@ -17,6 +18,7 @@ import {
     getFollowingInProgress,
     getIsFetching,
     getPageSize,
+    getSearch,
     getTotalUsersCount,
     getUsers
 } from "../../redux/usersSelectors";
@@ -28,14 +30,12 @@ let mapStateToProps = (state) => {
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
-        followingInProgress: getFollowingInProgress(state)
+        followingInProgress: getFollowingInProgress(state),
+        search: getSearch(state)
     }
 }
 
 class UsersContainer extends React.Component {
-    state = {
-        search: ""
-    }
 
     componentDidMount() {
         this.props.requestUsers(this.props.currentPage, this.props.pageSize);
@@ -47,28 +47,15 @@ class UsersContainer extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.search !== this.props.search)
-            this.setState({
-                search: this.props.search
-            })
     }
-
     onTextChange = (e) => {
-        this.setState({
-            search: e.currentTarget.value
-        })
-
-        this.props.getUser(this.state.search)
+        this.props.setSearch(e.currentTarget.value);
+        this.props.getUser(e.currentTarget.value)
 
     }
-
     render() {
-
         return <div>
-            <input type={"text"} placeholder={"Search user..."} value={this.state.search} onChange={this.onTextChange}
-
-            />
-
+            <input type={"text"} placeholder={"Search user..."} onChange={this.onTextChange} value={this.props.search}/>
             <Users totalUsersCount={this.props.totalUsersCount}
                    pageSize={this.props.pageSize}
                    currentPage={this.props.currentPage}
@@ -92,6 +79,6 @@ export default compose(
     // withAuthRedirect,
     connect(mapStateToProps, {
         follow, unFollow, setUsers,
-        setCurrentPage, setTotalUsersCount, requestUsers, toggleFollowingInProgress, getUser
+        setCurrentPage, setTotalUsersCount, requestUsers, toggleFollowingInProgress, getUser,setSearch
     }))
 (UsersContainer);
