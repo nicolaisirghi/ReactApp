@@ -12,7 +12,6 @@ class ProfileContainer extends React.Component {
         if (!profileId) {
             profileId = this.props.authorizedUserId||2;
         }
-
         this.props.getUserProfile(profileId)
         this.props.getStatus(profileId);
 
@@ -24,7 +23,7 @@ class ProfileContainer extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.router.params.userID != prevProps.router.params.userID)
+        if (this.props.router.params.userID !== prevProps.router.params.userID)
             this.refreshProfile();
     }
 
@@ -68,6 +67,5 @@ let mapStateToProps = (state) =>
 
 export default compose(
     withRouter,
-    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus,savePhoto,saveProfile}),
-    withRouter)
+    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus,savePhoto,saveProfile}))
 (ProfileContainer);

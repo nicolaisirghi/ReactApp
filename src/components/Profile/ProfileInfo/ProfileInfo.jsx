@@ -7,7 +7,6 @@ import ProfileDataReduxForm from "./ProfileForm";
 
 const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}) => {
     let [editMode, setEditMode] = useState(false);
-
     if (!profile)
         return <Preloader/>
     const onMainPhotoSelected = (e) => {
