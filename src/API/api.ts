@@ -21,7 +21,6 @@ export const usersAPI = {
         return instance.delete(`follow/${ID}`).then(response => response.data)
     },
     getProfile(profileId:number) {
-     console.warn('Obsolete method.Please use profileAPI object')
         return profileAPI.getProfile(profileId);
     },
     getFriends(){

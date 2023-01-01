@@ -1,13 +1,8 @@
 import React from "react";
-import c from "./ProfileInfo.module.css";
-import userPhoto from "../../../Assets/Images/pngegg.png";
-import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import {createField, Input, Textarea} from "../../common/FormsControls/FormsControls";
 import {reduxForm} from "redux-form";
-import profile from "../Profile";
 import style from "../../common/FormsControls/FormsControls.module.css";
-
-const ProfileForm = ({handleSubmit,profile,error}) => {
+const ProfileForm = ({handleSubmit, profile, error}) => {
     return <form onSubmit={handleSubmit}>
         <button>Save</button>
         {error && <div className={style.formSummaryError}>
@@ -22,10 +17,9 @@ const ProfileForm = ({handleSubmit,profile,error}) => {
         <div>
             <b>About me: </b>{createField("About me..", "aboutMe", [], Textarea)}
         </div>
-        <h2>Contacts:</h2> {Object.keys(profile.contacts).map(key=>
-            <div key={key}><b>{key}{createField(key,"contacts."+key,[],Input)}</b></div>
+        <h2>Contacts:</h2> {Object.keys(profile.contacts).map(key =>
+        <div key={key}><b>{key}{createField(key, "contacts." + key, [], Input)}</b></div>
     )}
-
 
 
     </form>

@@ -9,12 +9,11 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
     let [editMode, setEditMode] = useState(false);
     if (!profile)
         return <Preloader/>
-    const onMainPhotoSelected = (e) => {
+        const onMainPhotoSelected = (e) => {
         if (e.target.files.length) {
             savePhoto(e.target.files[0])
         }
     }
-
     const onSubmit =  (formData) => {
       saveProfile(formData).then(
            ()=>

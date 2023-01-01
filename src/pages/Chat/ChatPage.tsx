@@ -26,8 +26,6 @@ const Messages: React.FC<{wsChannel:WebSocket}> = ({wsChannel}) => {
     useEffect(()=>
         {
             wsChannel.addEventListener('message',(e)=>{
-                console.log(JSON.parse(e.data))
-                    console.log("dsjfnjj")
             const myObj:ChatMessageType[] = [{message:"Salut",photo:"https://media-exp1.licdn.com/dms/image/C4E03AQEdFePUt0Vgow/profile-displayphoto-shrink_200_200/0/1652889980027?e=2147483647&v=beta&t=IoAjWMFPHcQ7CFyuAM-VWXdnbEpwUzH1kJ5IOLIkYmY", userID:5,userName:"Vitea"}];
                 // @ts-ignore
                 setMessages((prevMessages)=>[...prevMessages ,...JSON.parse(e.data)])}

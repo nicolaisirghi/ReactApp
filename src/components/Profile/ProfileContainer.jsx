@@ -6,19 +6,16 @@ import {Navigate, useLocation, useNavigate, useParams,} from "react-router-dom";
 import {compose} from "redux";
 
 class ProfileContainer extends React.Component {
-
     refreshProfile() {
         let profileId = this.props.router.params.userID;
         if (!profileId) {
-            profileId = this.props.authorizedUserId||2;
+            profileId = this.props.authorizedUserId||26424;
         }
         this.props.getUserProfile(profileId)
         this.props.getStatus(profileId);
-
     }
 
     componentDidMount() {
-
         this.refreshProfile();
     }
 
@@ -36,7 +33,6 @@ class ProfileContainer extends React.Component {
                      status={this.props.status}
                      updateStatus={this.props.updateStatus}
                      savePhoto={this.props.savePhoto}/>
-
         )
     }
 }

@@ -16,7 +16,6 @@ const requestFriends = () => {
 }
 
 const requestUnFriend = (id) => {
-    debugger
     return unFriend(id);
 }
 
